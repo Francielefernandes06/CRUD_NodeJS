@@ -35,7 +35,7 @@ const Button = styled.button`
 
 
 
-const Form = ()=>{
+const Form = ({onEdit})=>{
     const ref = useRef();
 
     return(
