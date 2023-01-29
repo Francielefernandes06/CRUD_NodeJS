@@ -39,12 +39,16 @@ export const Td = styled.td`
 
 `;
 
-const Grid = ({users, setUsers}) => {
+const Grid = ({users, setUsers, setOnEdit}) => {
+
+    const handleEdit = (item) => {
+        setOnEdit(item);
+    }
 
     const handleDelete = async (id) =>{
         await axios
         .delete(`http://localhost:8000/${id}`)
-        .then((response)=>{
+        .then(({response})=>{
             const novoArray = users.filter((user) => user.id !== id)
 
             setUsers(novoArray)
@@ -55,7 +59,7 @@ const Grid = ({users, setUsers}) => {
             toast.error("Erro ao deletar usuário")
         })
 
-        // setOnEdit(null);
+        setOnEdit(null);
 
     }
     
@@ -83,7 +87,7 @@ const Grid = ({users, setUsers}) => {
                     <Td>{item.contato}</Td>
                     <Td>{new Date(item.data_nascimento).toLocaleDateString()}</Td>
                     <Td>
-                        <FaEdit />
+                        <FaEdit onClick={()=> handleEdit(item.id)} />
                         <FaTrash onClick={()=> handleDelete(item.id)}/>
                     </Td>
                 </Tr>

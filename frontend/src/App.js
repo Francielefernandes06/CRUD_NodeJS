@@ -12,7 +12,7 @@ import Grid from "./components/Grid";
 
 function App() {
   const [users, setUsers] = useState([]);
-  //const [onEdit, setOnEdit]= useState(null);
+  const [onEdit, setOnEdit]= useState(null);
 
   const getUsers = async () => {
     try {
@@ -35,13 +35,13 @@ function App() {
       <Container>
         <Title>USUÁRIOS</Title>
 
-        <Form>
+        <Form onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers}/>
 
-        </Form>
+       
 
-        <Grid users={users} setUsers={setUsers}>
+        <Grid users={users} setUsers={setUsers} setOnEdit={setOnEdit}/>
 
-        </Grid>
+        
 
       </Container>
 
