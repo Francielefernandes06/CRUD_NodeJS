@@ -1,9 +1,9 @@
 import React from 'react'
-// import axios from 'axios'
+import axios from 'axios'
 import styled from 'styled-components'
 import { FaTrash, FaEdit } from 'react-icons/fa';
 // import moment from 'moment';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 const Table = styled.table`
@@ -39,7 +39,25 @@ export const Td = styled.td`
 
 `;
 
-const Grid = ({users}) => {
+const Grid = ({users, setUsers}) => {
+
+    const handleDelete = async (id) =>{
+        await axios
+        .delete(`http://localhost:8000/${id}`)
+        .then((response)=>{
+            const novoArray = users.filter((user) => user.id !== id)
+
+            setUsers(novoArray)
+
+            toast.success("Usuário deletado com sucesso")
+        })
+        .catch((error)=>{
+            toast.error("Erro ao deletar usuário")
+        })
+
+        // setOnEdit(null);
+
+    }
     
     
 
@@ -65,8 +83,8 @@ const Grid = ({users}) => {
                     <Td>{item.contato}</Td>
                     <Td>{new Date(item.data_nascimento).toLocaleDateString()}</Td>
                     <Td>
-                        <FaEdit/>
-                        <FaTrash/>
+                        <FaEdit />
+                        <FaTrash onClick={()=> handleDelete(item.id)}/>
                     </Td>
                 </Tr>
                     

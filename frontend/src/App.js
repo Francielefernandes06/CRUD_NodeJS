@@ -39,7 +39,7 @@ function App() {
 
         </Form>
 
-        <Grid users={users}>
+        <Grid users={users} setUsers={setUsers}>
 
         </Grid>
 
