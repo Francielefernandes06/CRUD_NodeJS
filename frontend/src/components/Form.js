@@ -1,7 +1,10 @@
-import React, { useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import styled from "styled-components";
 import { FormContainer } from "../styles/FormContainer"
 import { InputArea } from "../styles/inputArea";
+import axios from "axios";
+import { toast } from "react-toastify";
+
 
 
 const Input =styled.input`
@@ -35,14 +38,66 @@ const Button = styled.button`
 
 
 
-const Form = ({onEdit})=>{
+const Form = ({onEdit, setOnEdit, getUsers})=>{
     const ref = useRef();
 
+    useEffect(() => {
+        if(onEdit){
+            const user = ref.current;
+            user.name.value = onEdit.name;
+            user.email.value = onEdit.email;
+            user.contato.value = onEdit.contato;
+            user.data_nascimento.value = onEdit.data_nascimento;
+        }
+       
+    }, [onEdit]);
+
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
+        const user = ref.current;
+
+        if (!user.nome.value || !user.email.value|| !user.contato.value|| !user.data_nascimento.value){
+
+            return toast.warn("Preencha todos os campos!")
+        }
+       
+        if(onEdit){
+            await axios
+        .put("http://localhost:8000/" + onEdit.id, {
+          nome: user.nome.value,
+          email: user.email.value,
+          contato: user.contato.value,
+          data_nascimento: user.data_nascimento.value,
+        })
+        .then(({ data }) => toast.success(data))
+        .catch(({ data }) => toast.error(data));
+    } else {
+      await axios
+        .post("http://localhost:8000", {
+          nome: user.nome.value,
+          email: user.email.value,
+          contato: user.contato.value,
+          data_nascimento: user.data_nascimento.value,
+        })
+        .then(({ data }) => toast.success(data))
+        .catch(({ data }) => toast.error(data));
+    }
+
+        user.nome.value = "";
+        user.email.value = "";
+        user.contato.value = "";
+        user.data_nascimento.value = "";
+
+        setOnEdit(null);
+        getUsers();
+    }
+
+
     return(
-       <FormContainer ref={ref}>
+       <FormContainer ref={ref} onSubmit={handleSubmit}>
             <InputArea>
                 <Label htmlFor="name">Name</Label>
-                <Input type="text" id="name" name="name" />
+                <Input type="text" id="name" name="nome" />
             </InputArea>
             <InputArea>
                 <Label htmlFor="email">Email</Label>
