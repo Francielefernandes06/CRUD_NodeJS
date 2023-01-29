@@ -2,6 +2,7 @@ import React from 'react'
 // import axios from 'axios'
 import styled from 'styled-components'
 import { FaTrash, FaEdit } from 'react-icons/fa';
+// import moment from 'moment';
 // import { toast } from 'react-toastify';
 
 
@@ -39,6 +40,9 @@ export const Td = styled.td`
 `;
 
 const Grid = ({users}) => {
+    
+    
+
   return (
     <Table>
         <Thead>
@@ -53,11 +57,13 @@ const Grid = ({users}) => {
 
         <Tbody>
             {users.map((item, i)=>(
+              
+                
                 <Tr key={i}>
-                    <Td>{item.name}</Td>
+                    <Td>{item.nome}</Td>
                     <Td>{item.email}</Td>
                     <Td>{item.contato}</Td>
-                    <Td>{item.data_nascimento}</Td>
+                    <Td>{new Date(item.data_nascimento).toLocaleDateString()}</Td>
                     <Td>
                         <FaEdit/>
                         <FaTrash/>
