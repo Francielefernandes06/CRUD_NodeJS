@@ -87,7 +87,7 @@ const Grid = ({users, setUsers, setOnEdit}) => {
                     <Td>{item.contato}</Td>
                     <Td>{new Date(item.data_nascimento).toLocaleDateString()}</Td>
                     <Td>
-                        <FaEdit onClick={()=> handleEdit(item.id)} />
+                        <FaEdit onClick={()=> handleEdit(item)} />
                         <FaTrash onClick={()=> handleDelete(item.id)}/>
                     </Td>
                 </Tr>
