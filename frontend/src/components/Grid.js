@@ -63,8 +63,6 @@ const Grid = ({users, setUsers, setOnEdit}) => {
         setOnEdit(null);
 
     }
-    
-    
 
   return (
     <Table>
