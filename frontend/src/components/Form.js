@@ -44,7 +44,7 @@ const Form = ({onEdit, setOnEdit, getUsers})=>{
     useEffect(() => {
         if(onEdit){
             const user = ref.current;
-            user.name.value = onEdit.name;
+            user.nome.value = onEdit.nome;
             user.email.value = onEdit.email;
             user.contato.value = onEdit.contato;
             user.data_nascimento.value = onEdit.data_nascimento;
@@ -64,7 +64,7 @@ const Form = ({onEdit, setOnEdit, getUsers})=>{
         if(onEdit){
             await axios
         .put("http://localhost:8000/" + onEdit.id, {
-          nome: user.nome.value,
+          nome: user.name.value,
           email: user.email.value,
           contato: user.contato.value,
           data_nascimento: user.data_nascimento.value,
@@ -96,7 +96,7 @@ const Form = ({onEdit, setOnEdit, getUsers})=>{
     return(
        <FormContainer ref={ref} onSubmit={handleSubmit}>
             <InputArea>
-                <Label htmlFor="name">Name</Label>
+                <Label htmlFor="nome">Nome</Label>
                 <Input type="text" id="name" name="nome" />
             </InputArea>
             <InputArea>
