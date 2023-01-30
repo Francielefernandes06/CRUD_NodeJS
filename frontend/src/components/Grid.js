@@ -12,7 +12,7 @@ const Table = styled.table`
     padding: 20px;
     box-shadow: 0px 0px 5px #ccc;
     border-radius: 10px;
-    max-width: 800px;
+    max-width: 900px;
     margin: 20px auto;
     work-break: break-all;
 `;
@@ -35,6 +35,7 @@ export const Th = styled.th`
 
 export const Td = styled.td`
     padding-top: 15px;
+    text-align: center;
 
 
 `;
@@ -71,7 +72,7 @@ const Grid = ({users, setUsers, setOnEdit}) => {
             <Tr>
                 <Th>Nome</Th>
                 <Th>Email</Th>
-                <Th>Telefone</Th>
+                <Th onlyWeb>Telefone</Th>
                 <Th>Data de Nascimento</Th>
                 <Th>Ações</Th>
             </Tr>
@@ -82,11 +83,11 @@ const Grid = ({users, setUsers, setOnEdit}) => {
               
                 
                 <Tr key={i}>
-                    <Td>{item.nome}</Td>
-                    <Td>{item.email}</Td>
-                    <Td>{item.contato}</Td>
-                    <Td>{new Date(item.data_nascimento).toLocaleDateString()}</Td>
-                    <Td>
+                    <Td width="20%">{item.nome}</Td>
+                    <Td width="40%">{item.email}</Td>
+                    <Td width="20%">{item.contato}</Td>
+                    <Td width="20%">{new Date(item.data_nascimento).toLocaleDateString()}</Td>
+                    <Td width="10%">
                         <FaEdit onClick={()=> handleEdit(item)} />
                         <FaTrash onClick={()=> handleDelete(item.id)}/>
                     </Td>
