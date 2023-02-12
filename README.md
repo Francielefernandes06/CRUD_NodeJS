@@ -10,14 +10,14 @@ Este é um projeto de exemplo para um aplicativo de gerenciamento de registros (
 
 ## **Instalação**
 
-1. Clone este repositório na sua máquina: `**git clone https://github.com/Francielefernandes06/CRUD_NodeJS.git**`
+1. Clone este repositório na sua máquina: **`git clone https://github.com/Francielefernandes06/CRUD_NodeJS.git`**
 2. Acesse a pasta do projeto: **`cd CRUD_NodeJS`**
 3. Instale as dependências do back-end: **`cd api`** e depois **`npm install`** ou **`yarn install`**
 4. Instale as dependências do front-end: **`cd frontend`** e depois **`npm install`** ou **`yarn install`**
 
 ## **Execução**
 
-1. Inicie o servidor Node.js: `**cd api**` e depois **`npm run start`**ou **`yarn server`**
+1. Inicie o servidor Node.js: **`cd api`** e depois **`npm run start`** ou **`yarn server`**
 2. Inicie o aplicativo React: **`cd frontend`** e depois **`npm start`** ou **`yarn start`**
 3. O aplicativo estará disponível em **`http://localhost:3000`**
 
